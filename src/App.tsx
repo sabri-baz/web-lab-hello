@@ -29,6 +29,7 @@ function App() {
           <li>Ev otomasyonu sistemleri üzerine çalışmak</li>
           <li>Yeni programlama dilleri ve algoritmalar keşfetmek</li>
           <li>Satranç oynamak ve teknik makaleler okumak</li>
+          <li>Yeni teknolojileri denemek</li>
         </ul>
       </section>
     </div>
