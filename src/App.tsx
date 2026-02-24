@@ -1,38 +1,46 @@
 import React from 'react';
-
 function App() {
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
-      <h1>Web Tasarımı ve Programlama</h1>
-      <h2>LAB-1</h2>
-      
-      <section>
-        <h3>Kişisel Bilgiler</h3>
-        <p><strong>Ad Soyad:</strong> [sabri baz]</p>
-        <p><strong>Öğrenci No:</strong> [240541164]</p>
-        <p><strong>Bölüm:</strong> Yazılım Mühendisliği (3. Sınıf)</p>
-      </section>
+    <>
+      {/* Sayfa genelinde bir başlık (h1) hiyerarşi için zorunludur */}
+      <header>
+        <h1>Sabri [Soyadın] - Portfolyo</h1>
+        <nav aria-label="Ana navigasyon">
+          <ul>
+            <li><a href="#hakkimda">Hakkimda</a></li>
+            <li><a href="#projeler">Projeler</a></li>
+            <li><a href="#iletisim">Iletisim</a></li>
+          </ul>
+        </nav>
+      </header>
 
-      <hr />
+      <main id="main-content">
+        <section id="hakkimda">
+          <h2>Hakkimda</h2>
+          {/* Uygulama-2: Profil fotoğrafı buraya gelecek */}
+          <p>Yazılım mühendisliği öğrencisiyim ve modern web teknolojileri üzerine çalışıyorum.</p>
+        </section>
 
-      <section>
-        <h3>Hakkımda</h3>
-        <p>
-          Fırat Üniversitesi'nde Yazılım Mühendisliği öğrencisiyim. 
-          Özellikle yapay zeka, mikroservis mimarileri ve gömülü sistemler üzerine projeler geliştirmekten keyif alıyorum.
-        </p>
-      </section>
+        <section id="projeler">
+          <h2>Projelerim</h2>
+          {/* Her proje bir article etiketi içinde olmalı */}
+          <article>
+            <h3>Proje Adı</h3>
+            <p>Proje açıklaması buraya gelecek.</p>
+          </article>
+        </section>
 
-      <section>
-        <h3>Hobilerim</h3>
-        <ul>
-          <li>Ev otomasyonu sistemleri üzerine çalışmak</li>
-          <li>Yeni programlama dilleri ve algoritmalar keşfetmek</li>
-          <li>Satranç oynamak ve teknik makaleler okumak</li>
-          <li>Yeni teknolojileri denemek</li>
-        </ul>
-      </section>
-    </div>
+        <section id="iletisim">
+          <h2>Iletisim</h2>
+          {/* Uygulama-4: Form buraya gelecek */}
+          <p>İletişim formu yakında burada olacak.</p>
+        </section>
+      </main>
+
+      <footer>
+        <p>&copy; 2026 Sabri [Soyadın]. Tum haklari saklidir.</p>
+      </footer>
+    </>
   );
 }
 
