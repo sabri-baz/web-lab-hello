@@ -3,6 +3,13 @@
 ## Hakkinda
 Bu proje, Web Tasarimi ve Programlama dersi LAB-1 kapsaminda Vite + React + TypeScript kullanilarak olusturulmustur.
 
+## Lighthouse Erişilebilirlik Raporu
+Bu projenin erişilebilirlik denetimi Google Lighthouse ile yapılmıştır.
+
+![Lighthouse Erişilebilirlik Skoru](./lighthouse-score.png)
+
+**Skor: 96/100**
+
 ## Gelistirici
 - **Ad Soyad:** [sabri baz]
 - **Ogrenci No:** [240541164]
