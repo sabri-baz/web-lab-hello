@@ -2,7 +2,7 @@ import React from 'react';
 function App() {
   return (
     <>
-      {/* Sayfa genelinde bir başlık (h1) hiyerarşi için zorunludur */}
+    <a href="#main-content" className="skip-link">Ana icerige atla</a>
       <header>
         <h1>Sabri [Soyadın] - Portfolyo</h1>
         <nav aria-label="Ana navigasyon">
