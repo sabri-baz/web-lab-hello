@@ -17,8 +17,16 @@ function App() {
       <main id="main-content">
         <section id="hakkimda">
           <h2>Hakkimda</h2>
-          {/* Uygulama-2: Profil fotoğrafı buraya gelecek */}
-          <p>Yazılım mühendisliği öğrencisiyim ve modern web teknolojileri üzerine çalışıyorum.</p>
+          <figure>
+            <img src="profil.jpg" alt="Sabri'nin vesikalik fotografi" />
+            <figcaption>Sabri - Yazilim Muhendisi Adayi</figcaption>
+          </figure>
+          <p>Firat Universitesi Yazilim Muhendisligi ogrencisiyim.</p>
+          <h3>Yeteneklerim</h3>
+          <ul>
+            <li>React & TypeScript</li>
+            <li>Python & AI</li>
+          </ul>
         </section>
 
         <section id="projeler">
