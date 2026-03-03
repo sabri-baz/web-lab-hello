@@ -43,14 +43,45 @@ function App() {
         {/* Projelerim Bölümü [cite: 790, 1196] */}
         <section id="projeler">
           <h2>Projelerim</h2>
-          <article> {/* [cite: 753, 1197] */}
-            <h3>Smart Garden Assistant</h3> {/* [cite: 1198] */}
-            <p>Bitki hastaliklarini tespit eden yapay zeka tabanli bir mobil uygulama.</p>
-          </article>
-          <article>
-            <h3>BazCrypte</h3>
-            <p>Collatz sanisina dayali guvenli rastgele sayi uretim algoritmasi.</p>
-          </article>
+  
+  {/* Grid kapsayıcısı burada başlıyor */}
+  <div className="project-grid">
+    
+    {/* 1. Proje Kartı */}
+    <article className="project-card">
+      <img src="https://picsum.photos/400/200?random=1" alt="E-Ticaret" />
+      <h3>E-Ticaret Sitesi</h3>
+      <p>React ve Node.js ile gelistirilmis tam kapsamli bir e-ticaret uygulamasi.</p>
+      <ul className="skill-tags">
+        <li>React</li>
+        <li>Node.js</li>
+        <li>MongoDB</li>
+      </ul>
+    </article>
+
+    {/* 2. Proje Kartı */}
+    <article className="project-card">
+      <img src="https://picsum.photos/400/200?random=2" alt="Blog" />
+      <h3>Blog Uygulamasi</h3>
+      <p>Kisisel blog platformu. Markdown destekli yazi editoru.</p>
+      <ul className="skill-tags">
+        <li>TypeScript</li>
+        <li>Next.js</li>
+      </ul>
+    </article>
+
+    {/* 3. Proje Kartı */}
+    <article className="project-card">
+      <img src="https://picsum.photos/400/200?random=3" alt="Hava Durumu" />
+      <h3>Hava Durumu</h3>
+      <p>OpenWeather API ile anlik hava durumu bilgisi.</p>
+      <ul className="skill-tags">
+        <li>JavaScript</li>
+        <li>API</li>
+      </ul>
+    </article>
+
+  </div>
         </section>
 
         {/* 4. ADIM: Doğrulamalı İletişim Formu [cite: 1020, 1088] */}
