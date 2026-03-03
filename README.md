@@ -1,73 +1,29 @@
-# React + TypeScript + Vite
+# LAB-3: CSS Tasarım Kararları ve Responsive Mimari Raporu
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Öğrenci:** Sabri  
+**Bölüm:** Yazılım Mühendisliği  
 
-Currently, two official plugins are available:
+Bu doküman, kişisel portföy projesinin CSS mimarisi kurulurken alınan tasarım kararlarını, kullanılan teknolojileri ve "Neden?" sorularının cevaplarını içermektedir. Projede tamamen **Mobile-First (Önce Mobil)** yaklaşımı benimsenmiştir.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 1. Mimari Yaklaşım: Mobile-First
+Projeye başlarken varsayılan CSS kodları (0-639px arası ekranlar için) mobil cihazlar hedeflenerek yazılmıştır. Bu sayede CSS dosyası yukarıdan aşağıya okunurken önce en temel ve sade yapı yüklenir. Daha büyük ekranlar için ise `@media (min-width: 640px)` (Tablet) ve `@media (min-width: 1024px)` (Masaüstü) kırılma noktaları (breakpoints) kullanılarak tasarım kademeli olarak genişletilmiştir. Bu yaklaşım, performans ve kod sürdürülebilirliği açısından tercih edilmiştir.
 
-## React Compiler
+## 2. Design Tokens (Tasarım Değişkenleri)
+Projedeki renk paleti, boşluklar (spacing), tipografi ve gölge gibi tekrarlayan değerler `token.css` dosyası içinde CSS Global Değişkenleri (`:root`) olarak tanımlanmıştır.
+* **Neden kullanıldı?** Projenin ilerleyen aşamalarında bir rengi veya boşluk değerini değiştirmek istediğimizde, yüzlerce satır kodu gezmek yerine tek bir merkezden (token dosyasından) güncelleme yapabilmek için bu sistem kuruldu. Ayrıca `clamp()` fonksiyonu ile "Fluid Typography" (Akışkan Tipografi) kullanılarak fontların ekran boyutuna göre esnek bir şekilde büyümesi/küçülmesi sağlandı.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 3. Flexbox ile Tek Boyutlu Düzenler
+Sayfa içindeki hizalama ve dağıtma işlemleri için yoğun olarak Flexbox kullanılmıştır:
+* **Header ve Navigasyon:** Masaüstü görünümünde logo ve menüyü iki zıt köşeye itmek için `justify-content: space-between` kullanıldı. Mobil görünümde ise `flex-direction: column` ile menü elemanları dikey bir yığın haline getirildi.
+* **Hakkımda Bölümü:** Mobilde resim ve metin alt alta (`column`) dizilirken, 640px ve üzeri ekranlarda `flex-direction: row` ile yan yana şık bir görünüme kavuşturuldu.
+* **Skill Tags (Yetenekler):** Proje kartlarındaki etiketlerin (React, Node.js vb.) yan yana esnek dizilmesi ve sığmadığında alt satıra geçmesi için `flex-wrap: wrap` özelliği uygulandı.
 
-## Expanding the ESLint configuration
+## 4. CSS Grid ile İki Boyutlu Düzen
+"Projelerim" bölümündeki kartların listelenmesi için CSS Grid mimarisi tercih edilmiştir. Flexbox yerine Grid kullanılmasının temel sebebi, elemanları hem satır hem de sütun bazında daha simetrik kontrol edebilmektir.
+* **Sihirli Satır:** `grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))` kodu sayesinde, hiçbir Media Query yazmaya gerek kalmadan kartların genişliği 280px'in altına düşmeyecek şekilde ayarlandı. Ekran genişledikçe kartlar otomatik olarak boşlukları dolduracak şekilde yan yana dizildi.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 5. UI/UX ve Mikro Etkileşimler
+Kullanıcı deneyimini artırmak için çeşitli dokunuşlar yapılmıştır:
+* Tıklanabilir elemanlara (linkler ve butonlar) `transition` eklenerek renk geçişlerinin yumuşak olması sağlandı.
+* Proje kartlarına `:hover` durumu eklendi. Kullanıcı kartın üzerine geldiğinde kart `transform: translateY(-4px)` ile hafifçe yukarı kalkmakta ve `box-shadow` ile belirginleşmektedir.
+* Resimlerin kapsayıcılarından taşmasını engellemek ve form oranını korumak için `object-fit: cover` ve `aspect-ratio` özellikleri kullanıldı.
