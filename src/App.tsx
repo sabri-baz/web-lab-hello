@@ -1,131 +1,108 @@
-import './App.css'
-import React from 'react'
-function App() {
-  return (
-    <>
-      {/* 3. ADIM: Erişilebilirlik - Skip Navigation [cite: 994, 1011] */}
-      <a href="#main-content" className="skip-link">Ana icerige atla</a>
+import React, { useState } from 'react';
+import Button from './components/button';
+import Input from './components/input';
+import Card from './components/card';
 
-      {/* 1. ADIM: Semantik Header ve Navigasyon [cite: 741, 744, 1187] */}
-      <header>
-        <h1>Sabri - Kisisel Portfolyo</h1> {/* [cite: 857, 1188] */}
-        <nav aria-label="Ana navigasyon"> {/* [cite: 981, 1189] */}
-          <ul>
-            <li><a href="#hakkimda">Hakkimda</a></li>
-            <li><a href="#projeler">Projeler</a></li>
-            <li><a href="#iletisim">Iletisim</a></li>
-          </ul>
-        </nav>
+export default function App() {
+  // Dark Mode için State ve Toggle Fonksiyonu [cite: 329, 357]
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleDark = () => {
+    document.documentElement.classList.toggle('dark');
+    setIsDark(!isDark);
+  };
+
+  return (
+    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors">
+      {/* Erişilebilirlik: Ana İçeriğe Atla Linki  */}
+      <a
+      href="#main-content" 
+        className="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 bg-blue-800 text-white p-2 z-50"
+        >
+          Ana içeriğe atla
+        </a>
+      {/* Karanlık Tema Değiştirme Butonu [cite: 353-382] */}
+      <button 
+        onClick={toggleDark} 
+        className="fixed bottom-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" 
+        aria-label="Tema değiştir"
+      >
+        {isDark ? '☀️' : '🌙'}
+      </button>
+
+      {/* --- Header ve Navigasyon --- [cite: 900-969] */}
+      <header className="sticky top-0 z-40 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <h1 className="text-xl font-bold text-blue-800 dark:text-blue-300">Sabri</h1>
+          <nav aria-label="Ana navigasyon">
+            <ul className="flex flex-wrap gap-2">
+              <li><a href="#hakkimda" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">Hakkımda</a></li>
+              <li><a href="#projeler" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">Projeler</a></li>
+              <li><a href="#iletisim" className="px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:bg-blue-100 dark:hover:bg-gray-800 transition-colors">İletişim</a></li>
+            </ul>
+          </nav>
+        </div>
       </header>
 
-      {/* Semantik Main ve Skip Link Hedefi [cite: 747, 1006] */}
       <main id="main-content">
-        
-        {/* 2. ADIM: Hakkımda Bölümü ve Profil Fotoğrafı [cite: 778, 1191] */}
-        <section id="hakkimda">
-          <h2>Hakkimda</h2> {/* [cite: 858, 1192] */}
-          <figure> {/* [cite: 761, 1193] */}
-            <img 
-              src="/profil.jpg" 
-              alt="Sabri'nin vesikalik fotografi" 
-            /> {/* [cite: 906, 1193] */}
-            <figcaption>Sabri - Yazilim Muhendisligi Ogrencisi</figcaption> {/* [cite: 761, 1193] */}
-          </figure>
-          <p>Firat Universitesi Yazilim Muhendisligi 3. sinif ogrencisiyim. [cite: 689, 1194]</p>
-          <h3>Yeteneklerim</h3>
-          <ul> {/* [cite: 1195] */}
-            <li>React & TypeScript</li>
-            <li>Python & Yapay Zeka</li>
-            <li>Git & GitHub</li>
-          </ul>
+        {/* --- Hakkımda Bölümü --- [cite: 983-1029] */}
+        <section id="hakkimda" className="py-16 px-4">
+          <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+            <figure className="shrink-0">
+              <img src="https://picsum.photos/200" alt="Profil fotoğrafı" className="w-40 h-40 rounded-full object-cover shadow-lg" />
+            </figure>
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center md:text-left">Hakkımda</h2>
+              <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                Fırat Üniversitesi Yazılım Mühendisliği 3. sınıf öğrencisiyim. Yapay zeka, derin öğrenme, siber güvenlik ve modern web teknolojileri (React, Node.js) üzerine projeler geliştiriyorum. Algoritma tasarımı ve problem çözme süreçlerine büyük ilgi duyuyorum.
+              </p>
+              <ul className="flex flex-wrap gap-2">
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">Python & Java & C#</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">Makine Öğrenmesi (AI)</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">React & Node.js</li>
+                <li className="bg-blue-800 text-white px-3 py-1 rounded-full text-sm">Siber Güvenlik</li>
+              </ul>
+            </div>
+          </div>
         </section>
 
-        {/* Projelerim Bölümü [cite: 790, 1196] */}
-        <section id="projeler">
-          <h2>Projelerim</h2>
-          <article> {/* [cite: 753, 1197] */}
-            <h3>Smart Garden Assistant</h3> {/* [cite: 1198] */}
-            <p>Bitki hastaliklarini tespit eden yapay zeka tabanli bir mobil uygulama.</p>
-          </article>
-          <article>
-            <h3>BazCrypte</h3>
-            <p>Collatz sanisina dayali guvenli rastgele sayi uretim algoritmasi.</p>
-          </article>
+        {/* --- Projelerim (Card Component'i kullanıldı) --- [cite: 1031-1056] */}
+        <section id="projeler" className="py-16 px-4 bg-gray-50 dark:bg-gray-900">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-10">Projelerim</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              <Card variant="elevated" image="https://picsum.photos/400/200?random=1" title="Smart Garden Assistant">
+                Bitki hastalıklarını tespit eden yapay zeka destekli mobil/web entegreli derin öğrenme projesi. (TFLite & Streamlit)
+              </Card>
+              <Card variant="elevated" image="https://picsum.photos/400/200?random=2" title="Movie Tracker">
+                OMDB API entegrasyonu ile geliştirilmiş, Node.js ve SQL Server tabanlı modern film takip web uygulaması.
+              </Card>
+              <Card variant="elevated" image="https://picsum.photos/400/200?random=3" title="BazCrypte RNG">
+                Collatz sanrısı prensibini temel alarak Java ile geliştirilmiş, kriptografik rastgele sayı üretici (RNG) algoritması.
+              </Card>
+            </div>
+          </div>
         </section>
 
-        {/* 4. ADIM: Doğrulamalı İletişim Formu [cite: 1020, 1088] */}
-        <section id="iletisim">
-          <h2>Iletisim</h2>
-          <form action="#" method="POST" noValidate> {/* [cite: 1091, 1168] */}
-            <fieldset> {/* [cite: 1043, 1092] */}
-              <legend>Iletisim Formu</legend> {/* [cite: 1043, 1093] */}
-
-              {/* Ad Soyad ve Label İlişkisi [cite: 1050, 1095] */}
-              <div className="form-group">
-                <label htmlFor="name">Ad Soyad: </label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  required 
-                  minLength={2} 
-                  aria-describedby="name-error" 
-                /> {/* [cite: 1096, 1097, 1099] */}
-                <small id="name-error" className="error-msg" role="alert"></small> {/* [cite: 1098, 1101, 1170] */}
-              </div>
-
-              {/* E-posta Alanı [cite: 1032, 1110] */}
-              <div className="form-group">
-                <label htmlFor="email">E-posta: </label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  required 
-                  aria-describedby="email-error" 
-                /> {/* [cite: 1110, 1111, 1113] */}
-                <small id="email-error" className="error-msg" role="alert"></small> {/* [cite: 1115, 1118] */}
-              </div>
-
-              {/* Konu Seçimi [cite: 1040, 1133] */}
-              <div className="form-group">
-                <label htmlFor="subject">Konu: </label>
-                <select id="subject" name="subject" required aria-describedby="subject-error">
-                  <option value="">-- Seciniz --</option>
-                  <option value="is">Is Teklifi</option>
-                  <option value="soru">Soru</option>
-                  <option value="oneri">Oneri</option>
-                </select> {/* [cite: 1134, 1135] */}
-                <small id="subject-error" className="error-msg" role="alert"></small> {/* [cite: 1138, 1139] */}
-              </div>
-
-              {/* Mesaj Alanı [cite: 1038, 1151] */}
-              <div className="form-group">
-                <label htmlFor="message">Mesajiniz:</label>
-                <textarea 
-                  id="message" 
-                  name="message" 
-                  rows={5} 
-                  required 
-                  minLength={10} 
-                  aria-describedby="message-error"
-                ></textarea> {/* [cite: 1152, 1153] */}
-                <small id="message-error" className="error-msg" role="alert"></small> {/* [cite: 1154, 1156] */}
-              </div>
-
-              <button type="submit">Gonder</button> {/* [cite: 1042, 1159] */}
-            </fieldset>
+        {/* --- İletişim (Input ve Button Component'leri kullanıldı) --- [cite: 1059-1118] */}
+        <section id="iletisim" className="py-16 px-4 max-w-lg mx-auto">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">İletişim</h2>
+          <form className="space-y-4">
+            <Input id="name" label="Ad Soyad" required />
+            <Input id="email" label="E-posta" type="email" required />
+            <div className="space-y-1">
+              <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">Mesajınız</label>
+              <textarea id="message" rows={5} required className="w-full px-3 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:bg-gray-800 dark:text-gray-100 dark:border-gray-600"></textarea>
+            </div>
+            <Button variant="primary" size="lg" type="submit">Gönder</Button>
           </form>
         </section>
-
       </main>
 
-      {/* Footer [cite: 759, 813, 1204] */}
-      <footer>
-        <p>&copy; 2026 Sabri. Tum haklari saklidir.</p> {/* [cite: 814, 1205] */}
+      {/* --- Footer --- [cite: 1123-1131] */}
+      <footer className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 text-center py-6 px-4 text-gray-500 dark:text-gray-400 text-sm">
+        <p>&copy; 2026 Sabri. Tüm hakları saklıdır.</p>
       </footer>
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
