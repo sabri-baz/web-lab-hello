@@ -17,14 +17,16 @@ export default function Card({
   footer,
   variant = "elevated",
 }: CardProps) {
+  // 1. DOKUNUŞ: elevated varyantına 'hover:-translate-y-1' (yukarı kayma) ve 'hover:shadow-xl' (büyük gölge) eklendi
   const variants = {
-    elevated: `bg-white dark:bg-gray-800 shadow-md hover:shadow-lg`,
+    elevated: `bg-white dark:bg-gray-800 shadow-md hover:shadow-xl hover:-translate-y-1`,
     outlined: `bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700`,
     filled: `bg-gray-100 dark:bg-gray-800`,
   };
 
   return (
-    <div className={`rounded-xl overflow-hidden transition-shadow ${variants[variant]}`}>
+    // 2. DOKUNUŞ: transition-shadow yerine 'transition-all duration-300' kullanılarak hareketin yağ gibi akması sağlandı
+    <div className={`rounded-xl overflow-hidden transition-all duration-300 ${variants[variant]}`}>
       {image && (
         <img src={image} alt={imageAlt || ""} className="w-full h-48 object-cover" />
       )}
