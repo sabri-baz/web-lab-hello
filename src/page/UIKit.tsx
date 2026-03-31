@@ -1,8 +1,8 @@
 import React from 'react';
-import Button from '../components/button';
-import Input from '../components/input';
-import Card from '../components/card';
-import Alert from '../components/Alert';
+import Button from '../components/ui/Button';
+import Input from '../components/ui/Input';
+import Card from '../components/ui/Card';
+import Alert from '../components/ui/Alert';
 
 export default function UIKit() {
   return (
