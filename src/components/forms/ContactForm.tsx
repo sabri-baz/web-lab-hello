@@ -113,14 +113,14 @@ export default function ContactForm() {
             rows={5} 
             value={formData.message}
             onChange={handleChange}
-            className={`w-full px-3 py-2 rounded-lg border focus:ring-2 focus:outline-none dark:bg-gray-800 dark:text-gray-100 transition-colors ${
-              errors.message ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-blue-500"
-            } ${isSubmitting ? "bg-gray-100 cursor-not-allowed dark:bg-gray-700" : ""}`}
+            className={`w-full px-3 py-2 rounded-lg border focus:ring-2 focus:outline-none dark:bg-gray-800 dark:text-gray-100 shadow-sm transition-all duration-300 ${
+              errors.message ? "border-red-500 focus:border-red-500 focus:ring-red-400/50" : "border-gray-300 dark:border-gray-600 focus:border-blue-500 focus:ring-blue-500/50"
+            } ${isSubmitting ? "bg-gray-100 cursor-not-allowed dark:bg-gray-700" : "bg-white dark:bg-gray-800"}`}
             required 
             disabled={isSubmitting}
           />
           {errors.message && (
-            <p className="text-sm text-red-600 dark:text-red-400">{errors.message}</p>
+            <p className="text-sm text-red-600 dark:text-red-400 animate-pulse">{errors.message}</p>
           )}
         </div>
         <Button variant="primary" size="lg" type="submit" disabled={isSubmitting}>
